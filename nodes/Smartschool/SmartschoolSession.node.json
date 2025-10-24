@@ -1,0 +1,20 @@
+{
+	"displayName": "Smartschool Login Session",
+	"name": "smartschoolSession",
+  "icon": "file:smartschool.png",
+	"group": ["input"],
+	"version": 1,
+	"description": "Logs into Smartschool via Microsoft SSO and stores PHPSESSID",
+	"defaults": {
+		"name": "Smartschool Session Login"
+	},
+	"inputs": ["main"],
+	"outputs": ["main"],
+	"credentials": [
+		{
+			"name": "SmartschoolSessionApi",
+			"required": true
+		}
+	],
+	"properties": []
+}

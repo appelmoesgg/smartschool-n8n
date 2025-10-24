@@ -15,7 +15,6 @@
 		"type": "git",
 		"url": "https://github.com/appelmoesgg/smartschool-n8n.git"
 	},
-
 	"main": "index.js",
 	"scripts": {
 		"build": "n8n-node build",
@@ -47,5 +46,9 @@
 	},
 	"peerDependencies": {
 		"n8n-workflow": "*"
+	},
+	"dependencies": {
+		"n8n-core": "^1.114.1",
+		"playwright": "^1.56.1"
 	}
 }
