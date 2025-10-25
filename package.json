@@ -1,7 +1,7 @@
 {
 	"name": "n8n-nodes-nasapic",
 	"version": "0.1.0",
-	"description": "n8n node to call NASA's APOD and Mars Rover Photo services.",
+	"description": "n8n node to automate smartschool.",
 	"license": "MIT",
 	"homepage": "",
 	"keywords": [
@@ -31,10 +31,13 @@
 	"n8n": {
 		"n8nNodesApiVersion": 1,
 		"credentials": [
-			"dist/credentials/NasaPicsApi.credentials.js"
+			"dist/credentials/NasaPicsApi.credentials.js",
+			"dist/credentials/SmartschoolSessionApi.credentials.js"
 		],
 		"nodes": [
-			"dist/nodes/NasaPics/NasaPics.node.js"
+			"dist/nodes/NasaPics/NasaPics.node.js",
+			"dist/nodes/Smartschool/SmartschoolSession.node.js",
+			"dist/nodes/Smartschool/SmartschoolSessionValidator.node.js"
 		]
 	},
 	"devDependencies": {

@@ -1,5 +1,5 @@
 import type { IExecuteFunctions, INodeExecutionData } from 'n8n-workflow';
-import { browserLogin } from './browserLogin';
+import { smscHeadlessLogin } from './smscHeadlessLogin';
 
 export class SmartschoolSession {
 	description = require('./SmartschoolSession.node.json');
@@ -7,7 +7,7 @@ export class SmartschoolSession {
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
 		const creds = await this.getCredentials('SmartschoolSessionApi');
 
-		const result = await browserLogin(creds as {
+		const result = await smscHeadlessLogin(creds as {
             domain: string;
             email: string;
             password: string;

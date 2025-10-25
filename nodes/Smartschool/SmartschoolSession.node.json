@@ -1,7 +1,7 @@
 {
 	"displayName": "Smartschool Login Session",
 	"name": "smartschoolSession",
-  "icon": "file:smartschool.png",
+    "icon": "file:smartschool.png",
 	"group": ["input"],
 	"version": 1,
 	"description": "Logs into Smartschool via Microsoft SSO and stores PHPSESSID",

@@ -1,6 +1,6 @@
 import { chromium } from 'playwright';
 
-export async function browserLogin(creds: {
+export async function smscHeadlessLogin(creds: {
 	domain: string;
 	email: string;
 	password: string;
@@ -8,7 +8,7 @@ export async function browserLogin(creds: {
 }) {
 	const { domain, email, password, birthdate } = creds;
 
-	const browser = await chromium.launch({ headless: false });
+	const browser = await chromium.launch({ headless: true });
 	const context = await browser.newContext({
 		ignoreHTTPSErrors: true,
 		userAgent: "Mozilla/5.0 (Windows NT 11.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.6998.166 Safari/537.36"
@@ -30,7 +30,7 @@ export async function browserLogin(creds: {
 	await page.fill('input[type="password"]', password);
 	await page.click('input[type="submit"]');
 
-	// stay signed in (we don't care)
+	// don't stay signed in (we don't care, we'll just use email/pw again)
 	try {
 		await page.waitForSelector('input[id="idBtn_Back"]', { timeout: 5000 });
 		await page.click('input[id="idBtn_Back"]');
@@ -46,10 +46,13 @@ export async function browserLogin(creds: {
 
 	await page.waitForURL(`https://${domain}/*`, { timeout: 60000 });
 	const cookies = await context.cookies();
-	const phpSess = cookies.find(c => c.name === 'PHPSESSID');
+	let phpSess: any = {};
 
-	await page.waitForLoadState('networkidle');
-	await page.waitForTimeout(5000);
+	cookies.forEach(cookie => {
+		if (cookie.name === 'PHPSESSID' && cookie.domain === domain) {
+			phpSess = cookie;
+		}
+	});
 
 	await browser.close();
 

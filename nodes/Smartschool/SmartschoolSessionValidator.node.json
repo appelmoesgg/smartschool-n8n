@@ -1,0 +1,30 @@
+{
+	"displayName": "Smartschool Session Validator",
+	"name": "smartschoolSessionValidator",
+	"icon": "file:smartschool.png",
+	"group": ["output"],
+	"version": 1,
+	"description": "Checks if the given PHPSESSID is valid",
+	"defaults": {
+		"name": "Smartschool Session Validator"
+	},
+	"inputs": ["main"],
+	"outputs": ["main"],
+	"properties": [
+		{
+			"displayName": "PHPSESSID",
+			"name": "phpSessId",
+			"type": "string",
+			"noDataExpression": false,
+			"requiresDataPath": "single",
+			"default": "={{ $json['phpSessId'] }}",
+			"options": []
+		}
+	],
+	"credentials": [
+		{
+			"name": "SmartschoolSessionApi",
+			"required": true
+		}
+	]
+}
