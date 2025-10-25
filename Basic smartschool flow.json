@@ -1,0 +1,461 @@
+{
+  "name": "Basic smc flow",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -352,
+        128
+      ],
+      "id": "f0990e2a-f4e4-4649-bda7-ff9829670ffc",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {},
+      "type": "CUSTOM.smartschoolSessionValidator",
+      "typeVersion": 1,
+      "position": [
+        416,
+        144
+      ],
+      "id": "8ddb70f5-5983-4e67-960e-17725668887f",
+      "name": "Smartschool Session Validator",
+      "alwaysOutputData": false,
+      "credentials": {
+        "SmartschoolSessionApi": {
+          "id": "NmDeH4C9IR296MFT",
+          "name": "Smartschool Session Login account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "atGA0ILRWKoka8z4",
+          "mode": "list",
+          "cachedResultName": "smartschool",
+          "cachedResultUrl": "/projects/KxL1zZ5YSfb1Yzoi/datatables/atGA0ILRWKoka8z4"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyValue": "1"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -128,
+        128
+      ],
+      "id": "9c13de00-83cc-4793-a4fb-01b7c7ca1c99",
+      "name": "Get row(s)",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ef40d4f7-dbc4-4c03-8478-cbbe3c9b240a",
+              "leftValue": "={{$json}}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        48,
+        128
+      ],
+      "id": "7413ccdd-7288-4dcf-b1ab-4bbd85aea7dd",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "atGA0ILRWKoka8z4",
+          "mode": "list",
+          "cachedResultName": "smartschool",
+          "cachedResultUrl": "/projects/KxL1zZ5YSfb1Yzoi/datatables/atGA0ILRWKoka8z4"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "cookie": "={{ $('Smartschool Session Login Generator').item.json.phpSessId }}"
+          },
+          "matchingColumns": [
+            "cookie"
+          ],
+          "schema": [
+            {
+              "id": "cookie",
+              "displayName": "cookie",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        784,
+        -64
+      ],
+      "id": "5b889ed6-dbe0-462f-af4d-ab1e869794cb",
+      "name": "Insert row"
+    },
+    {
+      "parameters": {
+        "phpSessId": "={{ $json.cookie }}"
+      },
+      "type": "CUSTOM.smartschoolSessionValidator",
+      "typeVersion": 1,
+      "position": [
+        160,
+        -256
+      ],
+      "id": "71222f08-9328-4f66-ba73-8775013d8b9b",
+      "name": "Smartschool Session Validator1",
+      "credentials": {
+        "SmartschoolSessionApi": {
+          "id": "NmDeH4C9IR296MFT",
+          "name": "Smartschool Session Login account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## TODO\n<-",
+        "height": 80,
+        "width": 150,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        800,
+        -272
+      ],
+      "id": "3e60444d-a5bc-4803-8ac0-07e831bd9ea8",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {},
+      "type": "CUSTOM.smartschoolSessionGenerator",
+      "typeVersion": 1,
+      "position": [
+        240,
+        144
+      ],
+      "id": "3f700926-0ca2-4d38-a96f-ff303c345fd4",
+      "name": "Smartschool Session Login Generator",
+      "credentials": {
+        "SmartschoolSessionApi": {
+          "id": "NmDeH4C9IR296MFT",
+          "name": "Smartschool Session Login account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ef40d4f7-dbc4-4c03-8478-cbbe3c9b240a",
+              "leftValue": "={{ $json.valid }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        640,
+        144
+      ],
+      "id": "08cee4cc-7859-408c-a975-3412bde1bfaf",
+      "name": "If1"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        880,
+        160
+      ],
+      "id": "e3b31c41-d01a-4f58-b3f0-c29d695e9d7b",
+      "name": "No Operation, do nothing"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ef40d4f7-dbc4-4c03-8478-cbbe3c9b240a",
+              "leftValue": "={{ $json.valid }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        320,
+        -256
+      ],
+      "id": "6166cf31-baf5-4965-8d41-5c87471167a6",
+      "name": "If2"
+    },
+    {
+      "parameters": {},
+      "type": "CUSTOM.smartschoolPlannerFetch",
+      "typeVersion": 1,
+      "position": [
+        576,
+        -272
+      ],
+      "id": "1a83fb42-3a3b-4387-a509-a5d6f79dd800",
+      "name": "Smartschool Planner Fetch (WIP)",
+      "credentials": {
+        "SmartschoolSessionApi": {
+          "id": "NmDeH4C9IR296MFT",
+          "name": "Smartschool Session Login account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "deleteRows",
+        "dataTableId": {
+          "__rl": true,
+          "value": "atGA0ILRWKoka8z4",
+          "mode": "list",
+          "cachedResultName": "smartschool",
+          "cachedResultUrl": "/projects/KxL1zZ5YSfb1Yzoi/datatables/atGA0ILRWKoka8z4"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyValue": "1"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -240,
+        -32
+      ],
+      "id": "17c0b242-9cbe-4c2e-b44c-86619581df5d",
+      "name": "Delete row(s)"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get row(s)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s)": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Smartschool Session Validator1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Smartschool Session Login Generator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Smartschool Session Validator": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert row": {
+      "main": [
+        [
+          {
+            "node": "Get row(s)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Smartschool Session Login Generator": {
+      "main": [
+        [
+          {
+            "node": "Smartschool Session Validator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Insert row",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Smartschool Session Validator1": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Smartschool Planner Fetch (WIP)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Delete row(s)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete row(s)": {
+      "main": [
+        [
+          {
+            "node": "Get row(s)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "f6bf73f5-412f-4ac8-8004-6b28b5c0244a",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "c598dc62f1875b4bfe26ae208f92707c73b5072c9ab93b1e5d4d55a48679d03c"
+  },
+  "id": "zIyGuIi1tySInwbM",
+  "tags": []
+}
