@@ -1,12 +1,12 @@
 {
-	"displayName": "Smartschool Login Session",
-	"name": "smartschoolSession",
+	"displayName": "Smartschool Session Generator",
+	"name": "smartschoolSessionGenerator",
     "icon": "file:smartschool.png",
 	"group": ["input"],
 	"version": 1,
 	"description": "Logs into Smartschool via Microsoft SSO and stores PHPSESSID",
 	"defaults": {
-		"name": "Smartschool Session Login"
+		"name": "Smartschool Session Generator"
 	},
 	"inputs": ["main"],
 	"outputs": ["main"],

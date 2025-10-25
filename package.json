@@ -36,8 +36,9 @@
 		],
 		"nodes": [
 			"dist/nodes/NasaPics/NasaPics.node.js",
-			"dist/nodes/Smartschool/SmartschoolSession.node.js",
-			"dist/nodes/Smartschool/SmartschoolSessionValidator.node.js"
+			"dist/nodes/Smartschool/SmartschoolSessionGenerator.node.js",
+			"dist/nodes/Smartschool/SmartschoolSessionValidator.node.js",
+			"dist/nodes/Smartschool/smartschoolPlannerFetch.node.js"
 		]
 	},
 	"devDependencies": {

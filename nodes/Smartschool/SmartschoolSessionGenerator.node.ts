@@ -1,8 +1,8 @@
 import type { IExecuteFunctions, INodeExecutionData } from 'n8n-workflow';
 import { smscHeadlessLogin } from './smscHeadlessLogin';
 
-export class SmartschoolSession {
-	description = require('./SmartschoolSession.node.json');
+export class SmartschoolSessionGenerator {
+	description = require('./SmartschoolSessionGenerator.node.json');
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
 		const creds = await this.getCredentials('SmartschoolSessionApi');
