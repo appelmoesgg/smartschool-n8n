@@ -8,12 +8,6 @@ async function fetchPlanner(
 		try {
 			const response = await fetch(plannerUrl, options);
 
-            if (response.status === 403) {
-                throw new NodeOperationError(this.getNode(), `HTTP error! You are probably using an invalid User ID... Status: ${response.status}`);
-            } else if (response.status > 500){
-                throw new NodeOperationError(this.getNode(), `HTTP error! Smartschool server seems to be down or unreachable. Status: ${response.status}`);
-            }
-
 			return response;
 		} catch (error) {
 			throw new NodeOperationError(
@@ -61,6 +55,13 @@ export class SmartschoolPlannerFetch {
 		};
 
 		const response = await fetchPlanner.call(this, plannerUrl, options);
+
+        if (response.status === 403) {
+            throw new NodeOperationError(this.getNode(), `HTTP error! You are probably using an invalid User ID... Status: ${response.status}`);
+        } else if (response.status > 500){
+            throw new NodeOperationError(this.getNode(), `HTTP error! Smartschool server seems to be down or unreachable. Status: ${response.status}`);
+        }
+
 		const data = await parsePlannerResponse.call(this, response);
 
 		return [
