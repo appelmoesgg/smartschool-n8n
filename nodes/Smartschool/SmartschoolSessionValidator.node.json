@@ -15,10 +15,11 @@
 			"displayName": "PHPSESSID",
 			"name": "phpSessId",
 			"type": "string",
-			"noDataExpression": false,
-			"requiresDataPath": "single",
-			"default": "={{ $json['phpSessId'] }}",
-			"options": []
+			"default": "",
+			"required": true,
+			"typeOptions": {
+				"alwaysOpenEditWindow": true
+			}
 		}
 	],
 	"credentials": [

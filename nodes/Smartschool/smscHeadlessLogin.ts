@@ -8,6 +8,7 @@ export async function smscHeadlessLogin(creds: {
 }) {
 	const { domain, email, password, birthdate } = creds;
 
+
 	const browser = await chromium.launch({ headless: true });
 	const context = await browser.newContext({
 		ignoreHTTPSErrors: true,
@@ -40,7 +41,7 @@ export async function smscHeadlessLogin(creds: {
 	await page.waitForURL(`https://${domain}/account-verification`, { timeout: 30000 });
 
 	await page.waitForSelector('input[type="date"]', { timeout: 15000 })
-	await page.fill('input[type="date"]', birthdate);
+	await page.fill('input[type="date"]', birthdate.split('T')[0]); // we dont need the time, otherwise it crashes
 	await page.click('button[type="submit"]');
 
 
@@ -54,6 +55,9 @@ export async function smscHeadlessLogin(creds: {
 		}
 	});
 
+	let url = await page.locator('#datePickerMenu').first().getAttribute('plannerurl');
+	let userId = url?.split('/')[4]
+
 	await browser.close();
 
 	if (!phpSess) {
@@ -62,5 +66,6 @@ export async function smscHeadlessLogin(creds: {
 
 	return {
 		phpSessId: phpSess.value,
+		userId: userId,
 	};
 }

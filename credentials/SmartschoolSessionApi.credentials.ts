@@ -31,7 +31,7 @@ export class SmartschoolSessionApi implements ICredentialType {
 			displayName: "Date of Birth (YYYY-MM-DD)",
 			placeholder: 'YYYY-MM-DD',
 			name: "birthdate",
-			type: "string",
+			type: "dateTime",
 			required: true,
 			default: '',
 		},

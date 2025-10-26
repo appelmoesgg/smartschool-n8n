@@ -1,5 +1,5 @@
 {
-	"name": "n8n-nodes-nasapic",
+	"name": "n8n-nodes-smartschool",
 	"version": "0.1.0",
 	"description": "n8n node to automate smartschool.",
 	"license": "MIT",
@@ -31,11 +31,9 @@
 	"n8n": {
 		"n8nNodesApiVersion": 1,
 		"credentials": [
-			"dist/credentials/NasaPicsApi.credentials.js",
 			"dist/credentials/SmartschoolSessionApi.credentials.js"
 		],
 		"nodes": [
-			"dist/nodes/NasaPics/NasaPics.node.js",
 			"dist/nodes/Smartschool/SmartschoolSessionGenerator.node.js",
 			"dist/nodes/Smartschool/SmartschoolSessionValidator.node.js",
 			"dist/nodes/Smartschool/smartschoolPlannerFetch.node.js"

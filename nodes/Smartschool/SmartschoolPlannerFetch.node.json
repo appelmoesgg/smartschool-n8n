@@ -1,7 +1,7 @@
 {
 	"displayName": "Smartschool Planner Fetch",
 	"name": "smartschoolPlannerFetch",
-    "icon": "file:smartschool.png",
+	"icon": "file:smartschool.png",
 	"group": ["input"],
 	"version": 1,
 	"description": "Fetches the planner items for the given time frame",
@@ -10,11 +10,77 @@
 	},
 	"inputs": ["main"],
 	"outputs": ["main"],
+	"properties": [
+		{
+			"displayName": "PHPSESSID",
+			"name": "phpSessId",
+			"type": "string",
+			"default": "",
+			"required": true,
+			"typeOptions": {
+				"alwaysOpenEditWindow": true
+			}
+		},
+		{
+			"displayName": "User ID",
+			"name": "userId",
+			"type": "string",
+			"default": "",
+			"description": "The user ID for the session.",
+			"required": true,
+			"typeOptions": {
+				"alwaysOpenEditWindow": true
+			}
+		},
+		{
+			"displayName": "From Date",
+			"name": "fromDate",
+			"type": "dateTime",
+			"default": "",
+			"description": "The start date for the planner items.",
+			"typeOptions": {
+				"alwaysOpenEditWindow": true
+			}
+		},
+		{
+			"displayName": "To Date",
+			"name": "toDate",
+			"type": "dateTime",
+			"default": "",
+			"description": "The end date for the planner items.",
+			"typeOptions": {
+				"alwaysOpenEditWindow": true
+			}
+		},
+		{
+			"displayName": "Types",
+			"name": "types",
+			"type": "multiOptions",
+			"default": "[planned-assignments]",
+			"description": "The types of planner items to fetch.",
+			"options": [
+				{
+					"name": "Planned Assignments",
+					"value": "planned-assignments"
+				},
+				{
+					"name": "Planned To-Dos",
+					"value": "planned-to-dos"
+				},
+				{
+					"name": "Planned Lesson Cluster Assignments",
+					"value": "planned-lesson-cluster-assignments"
+				}
+			],
+			"typeOptions": {
+				"alwaysOpenEditWindow": true
+			}
+		}
+	],
 	"credentials": [
 		{
 			"name": "SmartschoolSessionApi",
 			"required": true
 		}
-	],
-	"properties": []
+	]
 }
