@@ -1,21 +1,7 @@
 import { NodeOperationError, type IExecuteFunctions, type INodeExecutionData } from 'n8n-workflow';
+import { safeFetch } from './safeFetch';
 
-async function fetchPlanner(
-		this: IExecuteFunctions,
-		plannerUrl: string,
-		options: object,
-	): Promise<Response> {
-		try {
-			const response = await fetch(plannerUrl, options);
 
-			return response;
-		} catch (error) {
-			throw new NodeOperationError(
-				this.getNode(),
-				`Failed to fetch planner data: ${error.message} (are you connected to the internet?)`,
-			);
-		}
-	}
 
 async function parsePlannerResponse(
 		this:  IExecuteFunctions,
@@ -54,13 +40,7 @@ export class SmartschoolPlannerFetch {
 			},
 		};
 
-		const response = await fetchPlanner.call(this, plannerUrl, options);
-
-        if (response.status === 403) {
-            throw new NodeOperationError(this.getNode(), `HTTP error! You are probably using an invalid User ID... Status: ${response.status}`);
-        } else if (response.status > 500){
-            throw new NodeOperationError(this.getNode(), `HTTP error! Smartschool server seems to be down or unreachable. Status: ${response.status}`);
-        }
+		const response = await safeFetch.call(this, plannerUrl, options);
 
 		const data = await parsePlannerResponse.call(this, response);
 

@@ -1,0 +1,42 @@
+{
+	"displayName": "Smartschool Fetch Single Email",
+	"name": "smartschoolEmailSingleFetch",
+	"icon": "file:smartschool.png",
+	"group": ["input"],
+	"version": 1,
+	"description": "Fetches a single email (by ID) from your Smartschool inbox",
+	"defaults": {
+		"name": "Smartschool Fetch Single Email"
+	},
+	"inputs": ["main"],
+	"outputs": ["main"],
+	"credentials": [
+		{
+			"name": "SmartschoolSessionApi",
+			"required": true
+		}
+	],
+	"properties": [
+		{
+			"displayName": "PHPSESSID",
+			"name": "phpSessId",
+			"type": "string",
+			"default": "",
+			"required": true,
+			"typeOptions": {
+				"alwaysOpenEditWindow": true
+			}
+		},
+        {
+            "displayName": "Email ID",
+            "name": "mailId",
+            "type": "string",
+            "default": "",
+            "description": "The ID of the email to fetch.",
+            "required": true,
+            "typeOptions": {
+                "alwaysOpenEditWindow": true
+            }
+        }
+	]
+}

@@ -36,11 +36,13 @@
 		"nodes": [
 			"dist/nodes/Smartschool/SmartschoolSessionGenerator.node.js",
 			"dist/nodes/Smartschool/SmartschoolSessionValidator.node.js",
-			"dist/nodes/Smartschool/smartschoolPlannerFetch.node.js"
+			"dist/nodes/Smartschool/smartschoolPlannerFetch.node.js",
+			"dist/nodes/Smartschool/smartschoolEmailInboxFetch.node.js"
 		]
 	},
 	"devDependencies": {
 		"@n8n/node-cli": "*",
+		"@types/jsdom": "^27.0.0",
 		"eslint": "9.32.0",
 		"prettier": "3.6.2",
 		"release-it": "^19.0.4",
@@ -50,6 +52,7 @@
 		"n8n-workflow": "*"
 	},
 	"dependencies": {
+		"fast-xml-parser": "^5.3.0",
 		"n8n-core": "^1.114.1",
 		"playwright": "^1.56.1"
 	}
