@@ -13,6 +13,7 @@ Ignore the random nasa picture nodes im too lazy to remove
 
 
 > [!Caution]
-> This project is currently not against Smartschool's TOS (yay) but still, use at your own risk. <br>
+> This project is currently not against Smartschool's TOS (yay) but still, use at your own risk because we are using **unoffical api's**. <br>
 > I am NOT responsible for any issues that this tool might cause. <br>
-> You should still follow the normal Smartschool TOS which you can find [here](https://www.smartschool.be/gebruikersovereenkomst/)
+> You should still follow the normal Smartschool TOS which you can find [here](https://www.smartschool.be/gebruikersovereenkomst/)<br>
+> And finally, use common sense, don't flood the login api's eg. because you can still get blacklisted at microsoft...
