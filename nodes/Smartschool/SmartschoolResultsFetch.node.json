@@ -1,0 +1,42 @@
+{
+	"displayName": "Smartschool Results Fetch",
+	"name": "smartschoolResultsFetch",
+	"icon": "file:smartschool.png",
+	"group": ["input"],
+	"version": 1,
+	"description": "Fetches results from your Smartschool account",
+	"defaults": {
+		"name": "Smartschool Results Fetch"
+	},
+	"inputs": ["main"],
+	"outputs": ["main"],
+	"credentials": [
+		{
+			"name": "SmartschoolSessionApi",
+			"required": true
+		}
+	],
+	"properties": [
+		{
+			"displayName": "PHPSESSID",
+			"name": "phpSessId",
+			"type": "string",
+			"default": "",
+			"required": true,
+			"typeOptions": {
+				"alwaysOpenEditWindow": true
+			}
+		},
+        {
+            "displayName": "Amount of Results (latest first)",
+            "name": "amountOfResults",
+            "type": "number",
+            "default": 9999,
+            "required": true,
+            "typeOptions": {
+                "alwaysOpenEditWindow": true,
+                "minValue": 1
+            }
+        }
+	]
+}

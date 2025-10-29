@@ -3,11 +3,12 @@
 ## This is a work in progress where I am making n8n nodes for smartschool, so you can automate your smartschool account completely (at least when this is finished)
 
 Features:
-  - generating login cookies for smartschool (from ms login)
+  - generating login cookies for Smartschool (from ms login)
   - checking validity of a login cookie for smartschool
   - Fetching planner data
   - Fetching your inbox
   - Fetching a single mail by ID (you can find the id by fetching your inbox)
+  - Fetching your Smartschool results
 
 Ignore the random nasa picture nodes im too lazy to remove
 
