@@ -63,13 +63,10 @@ export class SmartschoolEmailSingleFetch {
 			creds as { domain: string },
 		);
 
-        console.log(mailJson);
         let msg = mailJson.server.response.actions.action.data.message;
 		if (msg) {
             msg.body = msg.body.replace(/\n/g, '');
-			console.log(msg);
 			mail = msg;
-			console.log('-----------------------');
 		}
 
 		return [

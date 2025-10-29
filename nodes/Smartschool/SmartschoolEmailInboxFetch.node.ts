@@ -1,7 +1,6 @@
 import { type IExecuteFunctions, type INodeExecutionData } from 'n8n-workflow';
 import { XMLParser } from 'fast-xml-parser';
 import { safeFetch } from './safeFetch';
-//import * as util from 'util';
 
 async function fetchMailWithCommand(this: IExecuteFunctions, commandXml: string, phpSessId: string, creds: {domain: string}) {
 		const response = await safeFetch.call(this, `https://${creds.domain}/?module=Messages&file=dispatcher`, {
@@ -67,12 +66,8 @@ export class SmartschoolEmailInboxFetch {
 		const startMailsJson = await fetchMailWithCommand.call(this, fetchInboxCommand, phpSessId, creds as {domain: string});
 		let moreMails = false;
 
-		//console.log(util.inspect(startMailsJson.server.response.actions.action[0].data.messages, {depth: null, colors: true}));
-
 		for (const msg of startMailsJson.server.response.actions.action[0].data.messages.message) {
-			console.log(msg);
 			mails.push(msg);
-			console.log('-----------------------');
 		}
 
 		for (const msg of startMailsJson.server.response.actions.action) {
@@ -84,7 +79,6 @@ export class SmartschoolEmailInboxFetch {
 		if (moreMails) {
 			while (moreMails) {
 				moreMails = false;
-				console.log('Fetching more mails...');
 
 				const moreMailsJson = await fetchMailWithCommand.call(
 					this,
@@ -94,9 +88,7 @@ export class SmartschoolEmailInboxFetch {
 				);
 
 				for (const msg of moreMailsJson.server.response.actions.action[0].data.messages.message) {
-					console.log(msg);
 					mails.push(msg);
-					console.log('-----------------------');
 				}
 
 				for (const msg of moreMailsJson.server.response.actions.action) {
