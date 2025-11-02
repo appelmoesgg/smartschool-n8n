@@ -19,7 +19,7 @@
 	"scripts": {
 		"build": "n8n-node build",
 		"build:watch": "tsc --watch",
-		"dev": "n8n-node dev",
+		"dev": "npm run build && (if not exist \"%USERPROFILE%/.n8n/custom\" mkdir \"%USERPROFILE%/.n8n/custom\") && (cd \"%USERPROFILE%/.n8n/custom\" && npm link n8n-nodes-smartschool) && n8n start",
 		"lint": "n8n-node lint",
 		"lint:fix": "n8n-node lint --fix",
 		"release": "n8n-node release",
